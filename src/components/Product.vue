@@ -1,6 +1,34 @@
+<script setup>
+import { store } from "../store.js";
+import Swal from "sweetalert2";
+
+const products = store.stock;
+const cart = store.cart;
+
+const addCart = (product) => {
+  const productCart = { ...product, cuantity: 0 };
+  const index = cart.indexOf(product.name);
+  if (cart.some((cartProduct) => cartProduct.name == product.name)) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "El articulo ya está en el carrito!",
+    });
+  } else {
+    store.addToCart(productCart);
+    Swal.fire({
+      icon: "success",
+      title: "Articulo agregado al carrito",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+};
+</script>
+
 <template>
-  <div class="bg-red-400 w-[100%] p-3 m-3 md:w-[50%]">
-    <h1>Product</h1>
+  <div class="w-[100%] p-3 m-3 md:w-[50%]">
+    <h1 class="font-bold text-[60px] text-center">Product list</h1>
     <div class="grid grid-cols-1 md:grid-cols-2">
       <div v-for="product in products" class="bg-slate-400 m-2 p-2 rounded-md">
         <div class="flex justify-center">
@@ -21,7 +49,10 @@
             >
               {{ product.stock }}
             </p>
-            <button class="bg-blue-500 px-4 h-[25px] md:h-[50px]">
+            <button
+              class="bg-blue-500 px-4 h-[25px] md:h-[50px]"
+              @click="addCart(product)"
+            >
               add to cart
             </button>
           </div>
@@ -30,10 +61,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import data from "../products.json";
-
-const products = data.products;
-console.log(products);
-</script>
