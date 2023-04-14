@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 import Swal from "sweetalert2";
-import data from "./products.json";
+import data from "./data.json";
 import { maxItemsAlert } from "./utilities/alert";
 
 export const store = reactive({
