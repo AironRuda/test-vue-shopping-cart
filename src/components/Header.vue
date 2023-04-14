@@ -4,7 +4,7 @@ const products = store.stock;
 </script>
 
 <template>
-  <div id="gallery" class="relative w-full" data-carousel="slide">
+  <div id="gallery" class="relative w-full bg-white" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
       <!-- Items -->
@@ -16,7 +16,7 @@ const products = store.stock;
         <img
           :src="product.img"
           class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-lg"
-          alt=""
+          :alt="product.name"
         />
       </div>
     </div>
@@ -36,7 +36,7 @@ const products = store.stock;
       >
         <svg
           aria-hidden="true"
-          class="w-6 h-6 text-white dark:text-gray-800"
+          class="w-6 h-6 text-black dark:text-gray-800"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -62,7 +62,7 @@ const products = store.stock;
       >
         <svg
           aria-hidden="true"
-          class="w-6 h-6 text-white dark:text-gray-800"
+          class="w-6 h-6 text-black dark:text-gray-800"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
