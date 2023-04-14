@@ -1,6 +1,7 @@
 import { reactive } from "vue";
 import Swal from "sweetalert2";
 import data from "./products.json";
+import { maxItemsAlert } from "./utilities/alert";
 
 export const store = reactive({
   stock: data.products,
@@ -12,11 +13,7 @@ export const store = reactive({
     this.cart.forEach((cartItem) => {
       if (cartItem.name == product.name) {
         if (cartItem.quantity >= product.stock) {
-          Swal.fire({
-            icon: "warning",
-            title: "Oops...",
-            text: "Alcanzaste el numero maximo de productos disponibles",
-          });
+          maxItemsAlert();
         } else {
           cartItem.quantity++;
         }
@@ -50,6 +47,21 @@ export const store = reactive({
         } else {
           cartItem.quantity--;
         }
+      }
+    });
+  },
+  calcTotal() {
+    let total = 0;
+    this.cart.forEach((item) => {
+      total += item.quantity * item.unit_price;
+    });
+    return total;
+  },
+  cleanCart() {
+    this.cart.forEach((cartItem) => {
+      if (cartItem.quantity == 0) {
+        const index = this.cart.indexOf(cartItem);
+        this.cart.splice(index, 1);
       }
     });
   },

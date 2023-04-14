@@ -1,14 +1,44 @@
 <script setup>
 import { store } from "../store.js";
 import { ref } from "vue";
+import { errorAlert, successAlert } from "../utilities/alert";
+import Swal from "sweetalert2";
 
 const cart = ref(store.cart);
+const total = ref(0);
 
 const decreaseQuantity = (product) => {
   store.decreaseQuantity(product);
+  total.value = store.calcTotal();
 };
 const increaseQuantity = (product) => {
   store.increaseQuantity(product);
+  total.value = store.calcTotal();
+};
+const generateOrder = () => {
+  store.cleanCart();
+  if (cart.value.length === 0) {
+    errorAlert("Intentaste generar una orden de un carrito vacio");
+  } else {
+    const order = {
+      products: cart.value,
+    };
+
+    let orderResume = "";
+    order.products.forEach(
+      (orderItem) =>
+        (orderResume +=
+          `${orderItem.name}` + ": " + `${orderItem.quantity}` + ", ")
+    );
+    orderResume += "total: " + `${total.value}`;
+
+    Swal.fire({
+      title: "Resumen de orden",
+      icon: "info",
+      html: `${orderResume}`,
+      showCloseButton: true,
+    });
+  }
 };
 </script>
 
@@ -57,6 +87,18 @@ const increaseQuantity = (product) => {
         <p class="font-bold">$ {{ product.quantity * product.unit_price }}</p>
       </div>
     </div>
-    <div>total</div>
+    <div
+      class="inline-flex items-center justify-between bg-orange-400 rounded-lg p-2 my-2 w-full"
+    >
+      <p>
+        Precio total: <span class="font-bold">${{ total }}</span>
+      </p>
+      <button
+        class="bg-orange-600 rounded-lg p-2 hover:bg-orange-500"
+        @click="generateOrder"
+      >
+        Generar orden
+      </button>
+    </div>
   </div>
 </template>

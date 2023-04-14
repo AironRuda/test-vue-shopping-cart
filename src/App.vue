@@ -3,7 +3,6 @@ import Header from "./components/Header.vue";
 import Product from "./components/Product.vue";
 import Cart from "./components/Cart.vue";
 import { store } from "./store";
-console.log(store.cart.length);
 </script>
 
 <template>
