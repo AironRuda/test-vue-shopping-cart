@@ -22,7 +22,7 @@ const products = store.stock;
     </div>
     <!-- Slider controls -->
     <div
-      class="absolute flex top-[42%] left-[38.5%] z-50 justify-center items-center bg-gray-400 rounded-xl opacity-75 p-[25px] font-bold md:left-[40%] lg:left-[42%]"
+      class="absolute flex top-[42%] left-[38.5%] z-50 justify-center items-center bg-orange-400 rounded-xl opacity-75 p-[25px] font-bold md:left-[40%] lg:left-[42%]"
     >
       <p>Alternova shop</p>
     </div>
