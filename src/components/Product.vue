@@ -1,6 +1,5 @@
 <script setup>
 import { store } from "../store.js";
-import Swal from "sweetalert2";
 import { errorAlert, successAlert } from "../utilities/alert";
 
 const products = store.stock;
@@ -37,13 +36,16 @@ const addCart = (product) => {
         <div class="p-5">
           <a href="#">
             <h5
-              class="mb-2 text-2xl font-bold tracking-tight h-[65px] text-gray-900 dark:text-white"
+              class="mb-2 text-2xl font-bold tracking-tight h-[65px] text-gray-900 dark:text-white text-center"
             >
               {{ product.name }}
             </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Articulos en inventario {{ product.stock }}
+          <p
+            class="mb-3 font-normal text-gray-700 dark:text-gray-400 text-center"
+          >
+            Articulos en inventario:
+            <span class="font-bold">{{ product.stock }}</span>
           </p>
           <a
             href="#"
