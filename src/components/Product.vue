@@ -6,8 +6,7 @@ const products = store.stock;
 const cart = store.cart;
 
 const addCart = (product) => {
-  const productCart = { ...product, cuantity: 0 };
-  const index = cart.indexOf(product.name);
+  const productCart = { ...product, quantity: 0 };
   if (cart.some((cartProduct) => cartProduct.name == product.name)) {
     Swal.fire({
       icon: "error",
@@ -15,13 +14,21 @@ const addCart = (product) => {
       text: "El articulo ya está en el carrito!",
     });
   } else {
-    store.addToCart(productCart);
-    Swal.fire({
-      icon: "success",
-      title: "Articulo agregado al carrito",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (product.stock == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No hay invenatio de este producto",
+      });
+    } else {
+      store.addToCart(productCart);
+      Swal.fire({
+        icon: "success",
+        title: "Articulo agregado al carrito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   }
 };
 </script>
