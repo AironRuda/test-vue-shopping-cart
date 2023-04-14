@@ -14,18 +14,14 @@ const products = store.stock;
         data-carousel-item
       >
         <img
-          :src="product.img"
+          :src="product.img ? product.img : `https://placehold.co/600x400`"
           class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-lg"
           :alt="product.name"
         />
       </div>
     </div>
     <!-- Slider controls -->
-    <div
-      class="absolute flex top-[42%] left-[38.5%] z-50 justify-center items-center bg-orange-400 rounded-xl opacity-75 p-[25px] font-bold md:left-[40%] lg:left-[42%]"
-    >
-      <p>Alternova shop</p>
-    </div>
+
     <button
       type="button"
       class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
