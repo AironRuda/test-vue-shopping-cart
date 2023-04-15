@@ -27,7 +27,7 @@ const generateOrder = () => {
     );
     orderResume += "total: " + `${store.calcTotal()}`;
     Swal.fire({
-      title: "Resumen de orden",
+      title: "Order summary",
       icon: "info",
       html: `${orderResume}`,
       showCloseButton: true,
