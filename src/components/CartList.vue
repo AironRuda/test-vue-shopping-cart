@@ -4,14 +4,11 @@ import { ref } from "vue";
 import { errorAlert, successAlert } from "../utilities/alert";
 import Swal from "sweetalert2";
 const cart = ref(store.cart);
-const total = ref(0);
 const decreaseQuantity = (product) => {
   store.decreaseQuantity(product);
-  total.value = store.calcTotal();
 };
 const increaseQuantity = (product) => {
   store.increaseQuantity(product);
-  total.value = store.calcTotal();
 };
 const generateOrder = () => {
   store.cleanCart();
@@ -21,13 +18,14 @@ const generateOrder = () => {
     const order = {
       products: cart.value,
     };
+    console.log(JSON.stringify(order));
     let orderResume = "";
     order.products.forEach(
       (orderItem) =>
         (orderResume +=
           `${orderItem.name}` + ": " + `${orderItem.quantity}` + ", ")
     );
-    orderResume += "total: " + `${total.value}`;
+    orderResume += "total: " + `${store.calcTotal()}`;
     Swal.fire({
       title: "Resumen de orden",
       icon: "info",
