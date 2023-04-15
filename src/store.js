@@ -24,19 +24,19 @@ export const store = reactive({
           const index = this.cart.indexOf(product);
 
           Swal.fire({
-            title: "Estas seguro?",
-            text: "Si disminuyes la cantidad eliminarás el producto del carrito!",
+            title: "Are you sure?",
+            text: "If you decrease the quantity you will remove the product from the cart!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Si, borralo!",
+            confirmButtonText: "Yes, delete it!",
           }).then((result) => {
             if (result.isConfirmed) {
               this.cart.splice(index, 1);
               Swal.fire(
-                "Borrrado!",
-                "El producto ha sido eliminado del carrito.",
+                "Deleted!!",
+                "The product has been removed from the cart.",
                 "success"
               );
             }

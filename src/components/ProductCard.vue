@@ -31,10 +31,10 @@ const addToCart = () => {
   if (
     cart.value.some((cartProduct) => cartProduct.name == product.value.name)
   ) {
-    errorAlert("El articulo ya está en el carrito!");
+    errorAlert("The item is already in the cart!");
   } else {
     cart.value.push(product.value);
-    successAlert("Articulo agregado al carrito");
+    successAlert("Item added to cart");
   }
 };
 </script>

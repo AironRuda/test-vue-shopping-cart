@@ -21,22 +21,10 @@ const increaseQuantity = (product) => {
       console.log("cart", cart.value);
     }
   });
-  //   store.increaseQuantity(product);
 };
 
 const decreaseQuantity = (product) => {
   store.decreaseQuantity(product);
-  //   increaseQuantity(product) {
-  //     this.cart.forEach((cartItem) => {
-  //       if (cartItem.name == product.name) {
-  //         if (cartItem.quantity >= product.stock) {
-  //           maxItemsAlert();
-  //         } else {
-  //           cartItem.quantity++;
-  //         }
-  //       }
-  //     });
-  //   },
 };
 // const increaseQuantity = (product) => {
 //   store.increaseQuantity(product);

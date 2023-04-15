@@ -19,6 +19,6 @@ export const maxItemsAlert = () => {
   Swal.fire({
     icon: "warning",
     title: "Oops...",
-    text: "Alcanzaste el numero maximo de productos disponibles",
+    text: "You reached the maximum number of available products",
   });
 };
