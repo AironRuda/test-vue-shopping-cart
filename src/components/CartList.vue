@@ -62,7 +62,7 @@ const generateOrder = () => {
       </div>
       <div class="inline-flex items-center mt-2">
         <button
-          class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
+          class="bg-white rounded-l border text-gray-600 w-[17px] md:w-[34px] hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
           @click="decreaseQuantity(product)"
         >
           <svg
@@ -86,7 +86,7 @@ const generateOrder = () => {
           {{ product.quantity }}
         </div>
         <button
-          class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
+          class="bg-white rounded-r border text-gray-600 w-[17px] md:w-[34px] hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
           @click="increaseQuantity(product)"
         >
           <svg
@@ -105,6 +105,7 @@ const generateOrder = () => {
           </svg>
         </button>
       </div>
+
       <h1 class="text-gray-800 text-center mt-1">
         Unit price: <span class="font-bold"> ${{ product.unit_price }} </span>
       </h1>
