@@ -6,9 +6,6 @@ import { maxItemsAlert } from "./utilities/alert";
 export const store = reactive({
   stock: data.products,
   cart: [],
-  addToCart(product) {
-    this.cart.push(product);
-  },
   increaseQuantity(product) {
     this.cart.forEach((cartItem) => {
       if (cartItem.name == product.name) {

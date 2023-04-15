@@ -1,11 +1,87 @@
 <script setup>
+import { store } from "../store.js";
 import { ref } from "vue";
 
 const props = defineProps(["product"]);
+
+const cart = ref(store.cart);
+
 let product = ref({ ...props.product });
+
 const backgroundImage = product.value.img
   ? product.value.img
   : "https://placehold.co/600x400";
+
+const increaseQuantity = (product) => {
+  console.log("increase");
+  console.log("product", product);
+  cart.value.forEach((cartItem) => {
+    if (cartItem.name == product.name) {
+      cartItem.quantity++;
+      console.log("cart", cart.value);
+    }
+  });
+  //   store.increaseQuantity(product);
+};
+
+const decreaseQuantity = (product) => {
+  store.decreaseQuantity(product);
+  //   increaseQuantity(product) {
+  //     this.cart.forEach((cartItem) => {
+  //       if (cartItem.name == product.name) {
+  //         if (cartItem.quantity >= product.stock) {
+  //           maxItemsAlert();
+  //         } else {
+  //           cartItem.quantity++;
+  //         }
+  //       }
+  //     });
+  //   },
+};
+// const increaseQuantity = (product) => {
+//   store.increaseQuantity(product);
+// };
+// const cart = ref(store.cart);
+// cart.value.forEach((cartItem) => {
+//   if (cartItem.name == product.name) product.value = cartItem.value;
+// });
+
+// const increaseNumber = () => {
+//   //   console.log(product);
+//   store.increaseQuantity(product.value);
+//   console.log(cart.value);
+//   //   console.log("increase");
+//   //   product.value.quantity++;
+//   //   if (product.value.quantity > product.value.stock) {
+//   //     product.value.quantity = product.value.stock;
+//   //     maxItemsAlert();
+//   //   }
+//   // console.log(cart.value);
+//   // cart.value.forEach((cartItem) => {
+//   //   if (cartItem.name == product.name) {
+//   //     if (cartItem.quantity >= product.stock) {
+//   //       maxItemsAlert();
+//   //     } else {
+//   //       cartItem.quantity++;
+//   //     }
+//   //   }
+//   // });
+
+//   // cart.forEach((cartItem) => {
+//   //   if (cartItem.name == product.name) {
+//   //     if (cartItem.quantity >= product.stock) {
+//   //       maxItemsAlert();
+//   //     } else {
+//   //       cartItem.quantity++;
+//   //     }
+//   //   }
+//   // });
+// };
+
+// const decreaseNumber = (product) => {
+//   //   store.decreaseQuantity(product);
+//   console.log("decrease");
+// };
 </script>
 
 <template>
@@ -24,8 +100,7 @@ const backgroundImage = product.value.img
     <div class="inline-flex items-center mt-2">
       <button
         class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
-        @click="decreaseNumber()"
-        :disabled="!product.stock"
+        @click="decreaseQuantity(product)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +124,7 @@ const backgroundImage = product.value.img
       </div>
       <button
         class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
-        @click="increaseNumber()"
-        :disabled="!product.stock"
+        @click="increaseQuantity(product)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

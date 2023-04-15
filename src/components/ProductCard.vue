@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { errorAlert, successAlert } from "../utilities/alert";
+import { errorAlert, maxItemsAlert, successAlert } from "../utilities/alert";
 import { store } from "../store.js";
 
 const props = defineProps(["product"]);
@@ -17,7 +17,7 @@ const increaseNumber = () => {
   product.value.quantity++;
   if (product.value.quantity > product.value.stock) {
     product.value.quantity = product.value.stock;
-    errorAlert("Alcanzaste el numero maximo de elementos disponibles");
+    maxItemsAlert();
   }
 };
 const decreaseNumber = () => {
@@ -33,7 +33,7 @@ const addToCart = () => {
   ) {
     errorAlert("El articulo ya está en el carrito!");
   } else {
-    store.addToCart(product.value);
+    cart.value.push(product.value);
     successAlert("Articulo agregado al carrito");
   }
 };
