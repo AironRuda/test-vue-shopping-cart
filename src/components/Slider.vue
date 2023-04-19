@@ -1,6 +1,9 @@
 <script setup>
 import { store } from "../store.js";
-const products = store.stock;
+import { localData, data2 } from "../api/info.js";
+
+const products = data2;
+console.log("from slider", products);
 </script>
 
 <template>
@@ -13,11 +16,17 @@ const products = store.stock;
         class="hidden duration-700 ease-in-out"
         data-carousel-item
       >
+        <!-- :src="product.image" -->
         <img
-          :src="product.img ? product.img : `https://placehold.co/600x400`"
+          src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
           class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-lg"
-          :alt="product.name"
+          :alt="product.title"
         />
+        <!-- <img
+          :src="product.image ? product.image : `https://placehold.co/600x400`"
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        /> -->
       </div>
     </div>
     <!-- Slider controls -->

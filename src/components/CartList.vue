@@ -3,7 +3,10 @@ import { store } from "../store.js";
 import { ref } from "vue";
 import { errorAlert, successAlert } from "../utilities/alert";
 import Swal from "sweetalert2";
+
 const cart = ref(store.cart);
+console.log(cart.value);
+
 const decreaseQuantity = (product) => {
   store.decreaseQuantity(product);
 };
@@ -51,13 +54,13 @@ const generateOrder = () => {
             'background-image':
               'url(' +
               `${
-                product.img ? 'product.img' : 'https://placehold.co/600x400'
+                product.image ? product.image : 'https://placehold.co/600x400'
               }` +
               ')',
           }"
         ></div>
         <div class="p-4 flex flex-col items-center">
-          <h1 class="text-gray-800 text-center mt-1">{{ product.name }}</h1>
+          <h1 class="text-gray-800 text-center mt-1">{{ product.title }}</h1>
         </div>
       </div>
       <div class="inline-flex items-center mt-2">
@@ -107,13 +110,11 @@ const generateOrder = () => {
       </div>
 
       <h1 class="text-gray-800 text-center mt-1">
-        Unit price: <span class="font-bold"> ${{ product.unit_price }} </span>
+        Unit price: <span class="font-bold"> ${{ product.price }} </span>
       </h1>
       <h1 class="text-gray-800 text-center mt-1">
         Total price:
-        <span class="font-bold">
-          ${{ product.quantity * product.unit_price }}
-        </span>
+        <span class="font-bold"> ${{ product.quantity * product.price }} </span>
       </h1>
     </div>
     <div

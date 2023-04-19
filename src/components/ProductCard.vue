@@ -4,11 +4,14 @@ import { errorAlert, maxItemsAlert, successAlert } from "../utilities/alert";
 import { store } from "../store.js";
 
 const props = defineProps(["product"]);
+let product = ref({
+  ...props.product,
+  quantity: 0,
+  stock: props.product.id - 2 <= 0 ? 0 : props.product.id,
+});
 
-let product = ref({ ...props.product, quantity: 0 });
-
-const backgroundImage = product.value.img
-  ? product.value.img
+const backgroundImage = product.value.image
+  ? product.value.image
   : "https://placehold.co/600x400";
 
 const cart = ref(store.cart);
@@ -28,9 +31,7 @@ const addToCart = () => {
   if (product.value.quantity == 0) {
     product.value.quantity = 1;
   }
-  if (
-    cart.value.some((cartProduct) => cartProduct.name == product.value.name)
-  ) {
+  if (cart.value.some((cartProduct) => cartProduct.id == product.value.id)) {
     errorAlert("The item is already in the cart!");
   } else {
     cart.value.push(product.value);
@@ -54,8 +55,8 @@ const addToCart = () => {
       </div>
     </div>
     <div class="p-4 flex flex-col items-center">
-      <h1 class="text-gray-800 text-center mt-1">{{ product.name }}</h1>
-      <p class="text-center text-gray-800 mt-1">$ {{ product.unit_price }}</p>
+      <h1 class="text-gray-800 text-center mt-1">{{ product.title }}</h1>
+      <p class="text-center text-gray-800 mt-1">$ {{ product.price }}</p>
       <div class="inline-flex items-center mt-2">
         <button
           class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"

@@ -15,8 +15,7 @@ const cart = store.cart;
     >
       <ProductCard v-for="product in products" :product="product" />
     </div>
-
-    <div v-if="cart.length != 0" class="flex flex-col items-center gap-2">
+    <div v-else class="flex flex-col items-center gap-2">
       <ProductCard v-for="product in products" :product="product" />
     </div>
   </div>

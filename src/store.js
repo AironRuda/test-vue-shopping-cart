@@ -1,14 +1,18 @@
 import { reactive } from "vue";
 import Swal from "sweetalert2";
-import data from "./data.json";
+import { products } from "./data.json";
 import { maxItemsAlert } from "./utilities/alert";
+import { localData, data2 } from "./api/info.js";
 
 export const store = reactive({
-  stock: data.products,
+  // localData: localData,
+  // apiData: apiData,
+  stock: localData,
   cart: [],
+
   increaseQuantity(product) {
     this.cart.forEach((cartItem) => {
-      if (cartItem.name == product.name) {
+      if (cartItem.id == product.id) {
         if (cartItem.quantity >= product.stock) {
           maxItemsAlert();
         } else {
@@ -19,7 +23,7 @@ export const store = reactive({
   },
   decreaseQuantity(product) {
     this.cart.forEach((cartItem) => {
-      if (cartItem.name == product.name) {
+      if (cartItem.id == product.id) {
         if (cartItem.quantity <= 0) {
           const index = this.cart.indexOf(product);
 
@@ -50,7 +54,7 @@ export const store = reactive({
   calcTotal() {
     let total = 0;
     this.cart.forEach((item) => {
-      total += item.quantity * item.unit_price;
+      total += item.quantity * item.price;
     });
     return total;
   },
